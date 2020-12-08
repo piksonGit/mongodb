@@ -7,6 +7,7 @@ import (
 	"time"
 
 	//一种数据格式
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -30,8 +31,18 @@ func Conn(uri string, dbName string, colName string) {
 }
 
 //FineOne封装了mongo的FindOne方法
-func FineOne(cname string, database string, filter interface{}) {
-
+func FineOne(cname string, database string, filter interface{}) bson.M{} {
+	collection = client.Database(database).Collection(cname)
+	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	var result bson.M
+	err := collection.FindOne(ctx, filter).Decode(&result)
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return bson.M{}
+		}
+		log.Println("[FindOne]", err)
+	}
+	return result
 }
 
 func InsertOne() {}

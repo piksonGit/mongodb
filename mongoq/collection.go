@@ -31,7 +31,7 @@ func Conn(uri string, dbName string, colName string) {
 }
 
 //FineOne封装了mongo的FindOne方法
-func FineOne(cname string, database string, filter interface{}) bson.M{} {
+func FineOne(cname string, database string, filter interface{}) bson.M {
 	collection = client.Database(database).Collection(cname)
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 	var result bson.M

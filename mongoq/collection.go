@@ -11,7 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var client *mongo.client
+var client *mongo.Client
 var collection *mongo.Collection
 
 //init方法初始化日志存储文件和连接数据库

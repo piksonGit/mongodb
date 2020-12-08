@@ -42,7 +42,7 @@ func UpdateOne() {}
 
 func setLog() {
 	file := "./log.txt"
-	logFile, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|O_APPEND, 0766)
+	logFile, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
 	if err != nil {
 		log.Fatal(err)
 	}
